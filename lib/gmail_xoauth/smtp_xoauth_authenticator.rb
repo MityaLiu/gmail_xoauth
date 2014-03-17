@@ -5,7 +5,7 @@ module GmailXoauth
   module SmtpXoauthAuthenticator
     
     def auth_xoauth(user, secret)
-      check_auth_args user, secret
+      check_auth_args user, secret, 'cram_md5'
       
       request_url  = "https://mail.google.com/mail/b/#{user}/smtp/"
 
@@ -22,7 +22,6 @@ module GmailXoauth
         get_response("AUTH XOAUTH #{base64_encode(sasl_client_request)}")
       }
       
-      check_auth_response res
       res
     end
     
